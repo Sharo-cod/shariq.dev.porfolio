@@ -1,5 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useTodo } from '../contexts';
 function TodoItem({ todo }) {
+
+    const [isTodoEditable, setisTodoEditable] = useState(false)
+    const [todoMsg, setTodoMsg] = useState(todo.todo)
+    const {updatedTodo , deleteTodo , toggleComplete} = useTodo()
+
+    const editTodo = () => {
+        updatedTodo(todo.id , {...todo , todo: todoMsg})
+        setisTodoEditable(false)
+    }
+
+    const toggleCompleted = () => {
+        toggleComplete(todo.id)
+    }
     
 
     return (
@@ -31,7 +45,7 @@ function TodoItem({ todo }) {
 
                     if (isTodoEditable) {
                         editTodo();
-                    } else setIsTodoEditable((prev) => !prev);
+                    } else setisTodoEditable((prev) => !prev);
                 }}
                 disabled={todo.completed}
             >
