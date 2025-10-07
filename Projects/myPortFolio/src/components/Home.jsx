@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import profilePic from "../assets/shariqalam.JPG";
+import { Link } from "react-router-dom"; // add this at the top
 
 export default function Hero() {
   return (
@@ -53,8 +54,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
       >
-        I am a frontend developer from Pakistan with 1 year of experience in
-        multiple languages.
+        I’m a Frontend Developer from Pakistan with over a year of experience building responsive and dynamic web applications using HTML, CSS, JavaScript, Tailwind CSS, and React. I’m also expanding my skills in backend technologies like Node.js and MongoDB. .
       </motion.p>
 
       {/* Buttons with animated cyan borders */}
@@ -64,30 +64,29 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
       >
-        {/* Button 1 - Connect */}
-        <motion.div
-          animate={{
-            y: [0, -4, 0],
-            scale: [1, 1.03, 1],
-          }}
-          transition={{
-            duration: 2,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatDelay: 0.3,
-          }}
-          className="relative rounded-full p-[2px] bg-gradient-to-r from-cyan-400 via-white to-cyan-600"
-        >
-          <a
-            href="#contact"
-            className="block bg-black text-white px-6 py-3 rounded-full font-semibold 
-            hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
-          >
-            Connect with me
-          </a>
-        </motion.div>
 
-        {/* Button 2 - Resume */}
+
+          <motion.div
+            animate={{ y: [0, -4, 0], scale: [1, 1.03, 1] }}
+            transition={{
+              duration: 2,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 0.3,
+            }}
+            className="relative rounded-full p-[2px] bg-gradient-to-r from-cyan-400 via-white to-cyan-600"
+          >
+            <Link
+              to="/portfolio"
+              onClick={() => window.scrollTo(0, 0)} // ensures scrolls to top
+              className="block bg-black text-white px-6 py-3 rounded-full font-semibold 
+                hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
+            >
+              Check Out My Work
+            </Link>
+          </motion.div>
+
+
         <motion.div
           animate={{
             y: [0, -4, 0],
