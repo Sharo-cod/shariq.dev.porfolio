@@ -1,26 +1,44 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import Services from "./components/Services";
-import Contact from "./components/Contact";
 import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
+import Preloader from "./components/Preloader";
+import { useEffect, useState } from "react";
 
-function App() {
+function AnimatedRoutes() {
+  const location = useLocation();
   return (
-    <Router>
-      <Navbar />
-      <div className="pt-20 bg-black min-h-screen text-white">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
-    </Router>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </AnimatePresence>
   );
 }
 
-export default App;
+export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Preloader />;
+
+  return (
+    <Router>
+      {/* ✅ Navbar is always visible on top */}
+      <Navbar />
+      <AnimatedRoutes />
+    </Router>
+  );
+}

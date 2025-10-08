@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import profilePic from "../assets/shariqalam.JPG"; // your profile picture
+import Lenis from "@studio-freight/lenis";
 
 export default function About() {
+  const lenisRef = useRef(null);
+
+  // Initialize Lenis smooth scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => t,
+      smooth: true,
+      direction: "vertical",
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    lenisRef.current = lenis;
+
+    return () => lenis.destroy();
+  }, []);
+
   return (
     <section
       id="about"
-      className="bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32"
+      className="bg-black text-white relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-32"
     >
       {/* Title */}
       <motion.h1
@@ -21,8 +44,7 @@ export default function About() {
 
       {/* Container */}
       <div className="flex flex-col md:flex-row items-center md:items-center max-w-6xl gap-12 md:gap-20">
-        
-        {/* Animated Profile Image with glowing shadow */}
+        {/* Profile Image */}
         <motion.div
           className="relative w-52 h-52 md:w-64 md:h-64 rounded-full p-[3px] bg-gradient-to-r from-cyan-500 via-white to-cyan-600 flex-shrink-0"
           initial={{ scale: 0.9, opacity: 0 }}

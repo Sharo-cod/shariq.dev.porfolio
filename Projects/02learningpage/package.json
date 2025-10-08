@@ -1,5 +1,5 @@
 {
-  "name": "myportfolio",
+  "name": "02learningpage",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,20 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.1.14",
-    "emailjs-com": "^3.2.0",
-    "framer-motion": "^12.23.22",
-    "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.3",
-    "react-tsparticles": "^2.12.2",
-    "tailwindcss": "^4.1.14",
-    "three": "^0.180.0",
-    "tsparticles": "^3.9.1",
-    "vanta": "^0.5.24"
+    "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

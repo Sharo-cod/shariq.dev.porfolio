@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Code, Palette, Zap, Box, Wind, Atom } from "lucide-react";
+import {
+  Code,
+  Palette,
+  Zap,
+  Box,
+  Wind,
+  Atom,
+  Scroll,
+  Activity, // ✅ use this instead of Motion
+} from "lucide-react";
+import Lenis from "@studio-freight/lenis";
 
 export default function Services() {
+  const lenisRef = useRef(null);
+
   const services = [
     {
       title: "HTML",
@@ -52,14 +64,76 @@ export default function Services() {
       gradient: "from-white via-cyan-300 to-white",
       borderColor: "border-white",
     },
+    {
+      title: "Lenis",
+      description:
+        "Enhancing user experience through smooth, buttery scrolling for a more natural website feel.",
+      icon: <Scroll size={40} />,
+      gradient: "from-cyan-400 via-white to-cyan-500",
+      borderColor: "border-cyan-400",
+    },
+    {
+      title: "Framer Motion",
+      description:
+        "Creating fluid animations and transitions with the power and elegance of Framer Motion.",
+      icon: <Activity size={40} />, // ✅ fixed icon
+      gradient: "from-white via-cyan-300 to-white",
+      borderColor: "border-white",
+    },
   ];
+
+  // Smooth scroll setup
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      smooth: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    lenisRef.current = lenis;
+    return () => lenis.destroy();
+  }, []);
 
   return (
     <section
       id="services"
-      className="bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32"
+      className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32 overflow-hidden"
     >
-      {/* Section Title */}
+      {/* Animated glowing wave background */}
+      <motion.svg
+        className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{
+          duration: 3,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "mirror",
+        }}
+      >
+        <path
+          fill="none"
+          stroke="url(#grad)"
+          strokeWidth="3"
+          d="M0,160 C480,300 960,0 1440,160"
+        />
+        <defs>
+          <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="#00FFFF" />
+            <stop offset="100%" stopColor="#0066FF" />
+          </linearGradient>
+        </defs>
+      </motion.svg>
+
+      {/* Title */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +144,7 @@ export default function Services() {
         My Services
       </motion.h1>
 
-      {/* About Text */}
+      {/* Subtitle */}
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -78,40 +152,53 @@ export default function Services() {
         viewport={{ once: true }}
         className="max-w-2xl text-gray-300 text-center mb-20 text-base md:text-lg leading-relaxed px-4"
       >
-        I specialize in crafting modern, responsive, and user-friendly websites
-        using the latest frontend technologies. From pixel-perfect designs to
-        interactive user experiences, I bring ideas to life through clean and
-        efficient code.
+        I craft modern, responsive, and engaging websites using the latest
+        frontend tools. From smooth animations to intuitive interfaces, I bring
+        designs to life through clean, efficient, and scalable code.
       </motion.p>
 
-      {/* Service Cards Grid */}
+      {/* Services Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl w-full">
         {services.map((service, index) => (
           <motion.div
             key={service.title}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{
               duration: 0.6,
               ease: "easeOut",
-              delay: index * 0.1, // stagger entrance
+              delay: index * 0.1,
             }}
-            className={`relative rounded-2xl p-[2px] bg-gradient-to-r ${service.gradient} cursor-pointer border-2 ${service.borderColor}`}
+            whileHover={{
+              scale: 1.05,
+              rotateX: 4,
+              rotateY: -4,
+              boxShadow: "0px 0px 40px rgba(0,255,255,0.3)",
+            }}
+            className={`relative rounded-2xl p-[2px] bg-gradient-to-r ${service.gradient} border-2 ${service.borderColor} cursor-pointer transition-all duration-300`}
           >
-            <motion.div
-              animate={{ scale: [1, 1.03, 1] }} // smooth pulse
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "mirror",
-              }}
-              className="bg-black rounded-2xl h-full p-8 flex flex-col items-center text-center space-y-5"
-            >
-              <div className="text-cyan-400">{service.icon}</div>
-              <h2 className="text-2xl font-semibold tracking-wide">{service.title}</h2>
-              <p className="text-gray-300 text-sm leading-relaxed px-2">{service.description}</p>
-            </motion.div>
+            <div className="bg-black rounded-2xl h-full p-8 flex flex-col items-center text-center space-y-5">
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                }}
+                className="text-cyan-400"
+              >
+                {service.icon}
+              </motion.div>
+
+              <h2 className="text-2xl font-semibold tracking-wide">
+                {service.title}
+              </h2>
+              <p className="text-gray-300 text-sm leading-relaxed px-2">
+                {service.description}
+              </p>
+            </div>
           </motion.div>
         ))}
       </div>

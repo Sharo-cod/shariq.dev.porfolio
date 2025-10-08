@@ -1,27 +1,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import profilePic from "../assets/shariqalam.JPG";
-import { Link } from "react-router-dom"; // add this at the top
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="bg-black text-white flex flex-col items-center justify-center text-center min-h-screen px-6 overflow-hidden"
+      className="bg-black text-white pt-20 flex flex-col items-center justify-center text-center min-h-screen px-6 md:px-20 relative"
     >
-      {/* Profile Image with animated border */}
+      {/* Profile Image with animated blue/cyan border */}
       <div className="relative w-52 h-52 sm:w-64 sm:h-64 mb-8 rounded-full flex items-center justify-center">
         <motion.div
-          animate={{
-            scale: [1, 1.05, 1],
-            y: [0, -6, 0],
-          }}
-          transition={{
-            duration: 2,
-            ease: "easeInOut",
-            repeat: Infinity,
-          }}
-          className="absolute inset-0 rounded-full p-[3px] bg-gradient-to-r from-cyan-500 via-white to-cyan-600 shadow-[0_0_25px_#06b6d4]"
+          animate={{ scale: [1, 1.05, 1], y: [0, -6, 0] }}
+          transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+          className="absolute inset-0 rounded-full p-[3px] bg-gradient-to-r from-cyan-500 via-blue-400 to-cyan-600 shadow-[0_0_25px_#06b6d4]"
         >
           <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
             <img
@@ -41,7 +34,7 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
       >
         I'm{" "}
-        <span className="bg-gradient-to-r from-white to-cyan-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-white  to-cyan-500 bg-clip-text text-transparent">
           Shariq Alam
         </span>
         , frontend <br className="hidden sm:block" /> developer based in Pakistan.
@@ -49,63 +42,47 @@ export default function Hero() {
 
       {/* Subtitle */}
       <motion.p
-        className="text-gray-300 max-w-2xl mb-8 text-lg"
+        className="text-gray-300 pt-5 max-w-2xl mb-8 text-lg"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
       >
-        I’m a Frontend Developer from Pakistan with over a year of experience building responsive and dynamic web applications using HTML, CSS, JavaScript, Tailwind CSS, and React. I’m also expanding my skills in backend technologies like Node.js and MongoDB. .
+        I’m a Frontend Developer from Pakistan with experience building responsive and dynamic web apps using{" "}
+        <span className="text-cyan-400 font-semibold">HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, React</span>. 
+        I’m also learning backend technologies like Node.js and MongoDB.
       </motion.p>
 
-      {/* Buttons with animated cyan borders */}
+      {/* Buttons */}
       <motion.div
         className="flex flex-col sm:flex-row gap-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
       >
-
-
-          <motion.div
-            animate={{ y: [0, -4, 0], scale: [1, 1.03, 1] }}
-            transition={{
-              duration: 2,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatDelay: 0.3,
-            }}
-            className="relative rounded-full p-[2px] bg-gradient-to-r from-cyan-400 via-white to-cyan-600"
+        <motion.div
+          animate={{ y: [0, -4, 0], scale: [1, 1.03, 1] }}
+          transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.3 }}
+          className="relative rounded-full p-[2px] bg-gradient-to-r from-white  to-cyan-600"
+        >
+          <Link
+            to="/portfolio"
+            onClick={() => window.scrollTo(0, 0)}
+            className="block bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
           >
-            <Link
-              to="/portfolio"
-              onClick={() => window.scrollTo(0, 0)} // ensures scrolls to top
-              className="block bg-black text-white px-6 py-3 rounded-full font-semibold 
-                hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
-            >
-              Check Out My Work
-            </Link>
-          </motion.div>
-
+            Check Out My Work
+          </Link>
+        </motion.div>
 
         <motion.div
-          animate={{
-            y: [0, -4, 0],
-            scale: [1, 1.03, 1],
-          }}
-          transition={{
-            duration: 2,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatDelay: 0.3,
-          }}
-          className="relative rounded-full p-[2px] bg-gradient-to-r from-cyan-400 via-white to-cyan-600"
+          animate={{ y: [0, -4, 0], scale: [1, 1.03, 1] }}
+          transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.3 }}
+          className="relative rounded-full p-[2px] bg-gradient-to-r from-white to-cyan-600"
         >
           <a
             href="#resume"
-            className="block bg-black text-white px-6 py-3 rounded-full font-semibold 
-            hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
+            className="block bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
           >
-            My resume
+            My Resume
           </a>
         </motion.div>
       </motion.div>
