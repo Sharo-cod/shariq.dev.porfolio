@@ -29,7 +29,6 @@ export default function Preloader() {
         </svg>
       </motion.div>
 
-      {/* Your name */}
       <motion.h1
         className="text-white text-2xl font-bold"
         initial={{ opacity: 0, scale: 0.8 }}

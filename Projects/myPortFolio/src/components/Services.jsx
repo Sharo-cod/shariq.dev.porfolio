@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   Code,
@@ -8,13 +8,10 @@ import {
   Wind,
   Atom,
   Scroll,
-  Activity, // ✅ use this instead of Motion
+  Activity,
 } from "lucide-react";
-import Lenis from "@studio-freight/lenis";
 
 export default function Services() {
-  const lenisRef = useRef(null);
-
   const services = [
     {
       title: "HTML",
@@ -76,35 +73,20 @@ export default function Services() {
       title: "Framer Motion",
       description:
         "Creating fluid animations and transitions with the power and elegance of Framer Motion.",
-      icon: <Activity size={40} />, // ✅ fixed icon
+      icon: <Activity size={40} />,
       gradient: "from-white via-cyan-300 to-white",
       borderColor: "border-white",
     },
   ];
 
-  // Smooth scroll setup
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
-      smooth: true,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-    lenisRef.current = lenis;
-    return () => lenis.destroy();
-  }, []);
-
   return (
-    <section
-      id="services"
-      className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32 overflow-hidden"
-    >
+      <motion.section
+        id="services"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32 overflow-hidden"
+      >
       {/* Animated glowing wave background */}
       <motion.svg
         className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"
@@ -202,6 +184,6 @@ export default function Services() {
           </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

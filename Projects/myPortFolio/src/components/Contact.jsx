@@ -60,7 +60,6 @@ export default function Contact() {
         onSubmit={sendEmail}
         className="w-full max-w-md bg-gray-900/40 p-8 rounded-2xl shadow-[0_0_25px_rgba(6,182,212,0.2)] space-y-6"
       >
-        {/* Name */}
         <input
           type="text"
           name="user_name"
@@ -69,7 +68,6 @@ export default function Contact() {
           className="w-full px-5 py-3 rounded-md bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         />
 
-        {/* Email */}
         <input
           type="email"
           name="user_email"
@@ -79,8 +77,6 @@ export default function Contact() {
         />
 
 
-
-        {/* Message */}
         <textarea
           name="message"
           rows="5"
@@ -88,15 +84,22 @@ export default function Contact() {
           required
           className="w-full px-5 py-3 rounded-md bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         ></textarea>
-
         <motion.button
-          type="submit"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-full bg-gradient-to-r from-cyan-400 to-cyan-600 text-black font-semibold py-3 rounded-full hover:shadow-[0_0_20px_#06b6d4] transition"
-        >
-          Send Message
+                type="submit"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 20px 4px rgba(6, 182, 212, 0.7), 0 0 40px 10px rgba(6, 182, 212, 0.4)",
+                }}
+                whileTap={{ scale: 0.95, boxShadow: "0 0 10px 2px rgba(6, 182, 212, 0.3)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-full bg-black cursor-pointer text-white border-2 border-white font-semibold py-3 rounded-full
+                          hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black hover:border-white
+                          transition-all duration-300"
+              >
+                Send Message
         </motion.button>
+
+
       </form>
     </section>
   );

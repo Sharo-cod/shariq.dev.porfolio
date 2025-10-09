@@ -1,48 +1,38 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
 
 export default function Portfolio() {
   const [showPreview, setShowPreview] = useState(false);
-  const lenisRef = useRef(null);
 
   const project = {
     name: "Coca Cola Website",
     path: "/projects/coca-cola/dist/index.html",
-    preview: "https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo.png",
+    preview:
+      "https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo.png",
     description:
       "A sleek React recreation of Coca Cola's landing experience with modern animations and product highlights.",
   };
 
-  // ✅ Lenis smooth scroll setup
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.3,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
-      smooth: true,
-      direction: "vertical",
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-    lenisRef.current = lenis;
-    return () => lenis.destroy();
-  }, []);
-
   return (
-    <div className="relative min-h-screen bg-black text-white pt-28 pb-20 px-6 overflow-hidden">
-      {/* Wavy glowing line background */}
+    <motion.div
+      id="portfolio"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="relative min-h-screen bg-black text-white pt-28 pb-20 px-6 overflow-hidden"
+    >
       <motion.svg
         className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
+        transition={{
+          duration: 3,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "mirror",
+        }}
       >
         <path
           fill="none"
@@ -67,7 +57,6 @@ export default function Portfolio() {
         My React Projects
       </motion.h1>
 
-      {/* Project card */}
       <div className="flex justify-center">
         <motion.div
           className="relative bg-gray-900 rounded-2xl overflow-hidden w-full max-w-lg shadow-lg border border-cyan-700/30 hover:border-cyan-400/70 transition-all duration-500"
@@ -82,7 +71,6 @@ export default function Portfolio() {
             boxShadow: "0px 0px 50px rgba(0,255,255,0.3)",
           }}
         >
-          {/* Project Image */}
           <motion.img
             src={project.preview}
             alt={`${project.name} preview`}
@@ -90,14 +78,12 @@ export default function Portfolio() {
             whileHover={{ rotate: 1 }}
           />
 
-          {/* Info */}
           <div className="p-6 text-left">
             <h2 className="text-2xl font-bold text-cyan-400 mb-3">
               {project.name}
             </h2>
             <p className="text-gray-300 mb-6">{project.description}</p>
 
-            {/* Buttons */}
             <div className="flex justify-between">
               <motion.button
                 onClick={() => setShowPreview(!showPreview)}
@@ -119,12 +105,10 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Preview animation */}
           <motion.div
             className={`overflow-hidden border-t border-cyan-700/30 bg-black transition-all duration-700 ${
               showPreview ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
             }`}
-            initial={{ opacity: 0, height: 0 }}
             animate={{
               opacity: showPreview ? 1 : 0,
               height: showPreview ? 400 : 0,
@@ -139,6 +123,6 @@ export default function Portfolio() {
           </motion.div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

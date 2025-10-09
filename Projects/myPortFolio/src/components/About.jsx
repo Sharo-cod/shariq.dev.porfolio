@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import profilePic from "../assets/shariqalam.JPG"; // your profile picture
+import profilePic from "../assets/shariqalam.JPG"; 
 import Lenis from "@studio-freight/lenis";
 
 export default function About() {
   const lenisRef = useRef(null);
 
-  // Initialize Lenis smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -31,7 +30,7 @@ export default function About() {
       id="about"
       className="bg-black text-white relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-32"
     >
-      {/* Title */}
+
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +41,6 @@ export default function About() {
         About Me
       </motion.h1>
 
-      {/* Container */}
       <div className="flex flex-col md:flex-row items-center md:items-center max-w-6xl gap-12 md:gap-20">
         {/* Profile Image */}
         <motion.div
@@ -52,7 +50,7 @@ export default function About() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          {/* Animated Glow Shadow */}
+
           <motion.div
             className="absolute inset-0 rounded-full blur-2xl bg-cyan-500 opacity-60"
             animate={{
@@ -77,7 +75,6 @@ export default function About() {
           />
         </motion.div>
 
-        {/* Text Section */}
         <motion.div
           className="flex-1 text-center md:text-left space-y-5"
           initial={{ opacity: 0, x: 50 }}
