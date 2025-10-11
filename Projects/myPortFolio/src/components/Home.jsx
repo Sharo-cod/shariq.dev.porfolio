@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import profilePic from "../assets/shariqalam.JPG";
 import { Link } from "react-router-dom";
 
@@ -8,9 +7,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="bg-black text-white pt-24 flex flex-col items-center justify-center text-center min-h-screen px-6 md:px-20 relative pb-32"
+      className="bg-black text-white pt-15 flex flex-col items-center justify-center text-center min-h-screen px-5 relative "
     >
-      <div className="relative pt-10 w-52 h-52 sm:w-64 sm:h-64 mb-12 rounded-full flex items-center justify-center">
+      <div className="relative pt-5 w-52 h-52 sm:w-64 sm:h-64 mb-6 rounded-full flex items-center justify-center">
         <motion.div
           animate={{
             scale: [1, 1.05, 1],
@@ -39,7 +38,7 @@ export default function Hero() {
       </div>
 
       <motion.h1
-        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
@@ -52,7 +51,7 @@ export default function Hero() {
       </motion.h1>
 
       <motion.p
-        className="text-gray-300 pt-5 max-w-2xl mb-12 text-lg"
+        className="text-gray-300 pt-2 max-w-2xl mb-6 text-lg"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
@@ -64,7 +63,7 @@ export default function Hero() {
       </motion.p>
 
       <motion.div
-        className="flex flex-col sm:flex-row gap-6 mb-12"
+        className="flex flex-col sm:flex-row gap-4 mb-5"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
@@ -95,36 +94,6 @@ export default function Hero() {
             My Resume
           </a>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="flex gap-8 mt-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
-      >
-        {[
-          { icon: <FaGithub />, link: "https://github.com/sharo-cod" },
-          { icon: <FaInstagram />, link: "https://instagram.com/he_sharo" },
-          { icon: <FaLinkedin />, link: "https://linkedin.com/in/shariq-alam-98560931b" },
-        ].map((social, idx) => (
-          <a key={idx} href={social.link} target="_blank" rel="noopener noreferrer">
-            <div className="w-14 h-14 flex items-center justify-center rounded-full bg-black border-2 border-white overflow-hidden ">
-              <motion.div
-                whileHover={{
-                  scale: 1.4,
-                  rotate: [0, 10, -10, 0],
-                  color: "#06b6d4",
-                  textShadow: "0 0 8px #06b6d4",
-                }}
-                whileTap={{ scale: 0.9 }}
-                className="text-white text-3xl"
-              >
-                {social.icon}
-              </motion.div>
-            </div>
-          </a>
-        ))}
       </motion.div>
     </section>
   );

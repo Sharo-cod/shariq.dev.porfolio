@@ -10,12 +10,12 @@ import Services from "./components/Services";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import Preloader from "./components/Preloader";
+import Footer from "./components/Footer"; // ✅ Import Footer
 
 function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    // ❌ REMOVE mode="wait" — that causes a pause between route loads
     <AnimatePresence initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
@@ -31,13 +31,11 @@ function AnimatedRoutes() {
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // ✅ Only preload once
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ Global Lenis (no recreate on every route)
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.1,
@@ -59,9 +57,16 @@ export default function App() {
 
   return (
     <Router>
-      <div className="bg-black text-white min-h-screen">
+      <div className="bg-black text-white min-h-screen flex flex-col">
         <Navbar />
-        <AnimatedRoutes />
+
+        {/* Main content grows to fill available space */}
+        <main className="flex-grow">
+          <AnimatedRoutes />
+        </main>
+
+        {/* Footer appears on all pages */}
+        <Footer />
       </div>
     </Router>
   );

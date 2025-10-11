@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Portfolio() {
-  const [showPreview, setShowPreview] = useState(false);
+  const [activePreview, setActivePreview] = useState(null);
 
-  const project = {
-    name: "Coca Cola Website",
-    path: "/projects/coca-cola/dist/index.html",
-    preview:
-      "https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo.png",
-    description:
-      "A sleek React recreation of Coca Cola's landing experience with modern animations and product highlights.",
-  };
+  const projects = [
+    {
+      name: "Coca Cola Website",
+      path: "/projects/coca-cola/dist/index.html",
+      preview: "https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo.png",
+      description:
+        "A sleek React recreation of Coca Cola's landing experience with modern animations and product highlights.",
+    },
+    {
+      name: "Radio Verse",
+      path: "/projects/02workShop/dist/index.html",
+      preview: "https://c4.wallpaperflare.com/wallpaper/239/930/324/walkman-cassette-player-the-bootleg-boy-2-lofi-sony-hd-wallpaper-thumb.jpg",
+      description:
+        "A modern workshop-themed website featuring tools, services, and contact information with smooth UI animations.",
+    },
+  ];
 
   return (
     <motion.div
@@ -21,6 +29,7 @@ export default function Portfolio() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="relative min-h-screen bg-black text-white pt-28 pb-20 px-6 overflow-hidden"
     >
+      {/* Animated gradient line background */}
       <motion.svg
         className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none"
         viewBox="0 0 1440 320"
@@ -57,9 +66,11 @@ export default function Portfolio() {
         My React Projects
       </motion.h1>
 
-      <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center gap-10">
+        {projects.map((project, index) => (
         <motion.div
-          className="relative bg-gray-900 rounded-2xl overflow-hidden w-full max-w-lg shadow-lg border border-cyan-700/30 hover:border-cyan-400/70 transition-all duration-500"
+          key={index}
+          className="relative bg-gray-900 rounded-2xl overflow-hidden w-full max-w-lg sm:max-w-sm shadow-lg border border-cyan-700/30 hover:border-cyan-400/70 transition-all duration-500"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -74,55 +85,79 @@ export default function Portfolio() {
           <motion.img
             src={project.preview}
             alt={`${project.name} preview`}
-            className="w-full h-56 object-contain bg-black transition-transform duration-700 hover:scale-110"
+            className="w-full h-52 sm:h-40 md:h-52 object-cover bg-black transition-transform duration-700 hover:scale-110"
+            style={{
+              filter:
+                project.name === "Radio Verse"
+                  ? "grayscale(50%) contrast(120%) brightness(90%) sepia(30%) hue-rotate(180deg) saturate(200%)"
+                  : "none",
+            }}
             whileHover={{ rotate: 1 }}
           />
 
-          <div className="p-6 text-left">
-            <h2 className="text-2xl font-bold text-cyan-400 mb-3">
-              {project.name}
-            </h2>
-            <p className="text-gray-300 mb-6">{project.description}</p>
 
-            <div className="flex justify-between">
-              <motion.button
-                onClick={() => setShowPreview(!showPreview)}
-                className="bg-cyan-500 hover:bg-cyan-400 text-black px-5 py-2 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md hover:shadow-cyan-400/50"
-                whileTap={{ scale: 0.95 }}
-              >
-                {showPreview ? "Hide Preview" : "Preview"}
-              </motion.button>
+            <div className="p-6 text-left">
+              <h2 className="text-2xl font-bold text-cyan-400 mb-3">
+                {project.name}
+              </h2>
+              <p className="text-gray-300 mb-6">{project.description}</p>
 
-              <motion.a
-                href={project.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md"
-                whileTap={{ scale: 0.95 }}
-              >
-                Open Project
-              </motion.a>
+              <div className="flex justify-between">
+                <motion.button
+                  onClick={() =>
+                    setActivePreview(activePreview === index ? null : index)
+                  }
+                  className="bg-cyan-500 hover:bg-cyan-400 text-black px-5 py-2 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md hover:shadow-cyan-400/50"
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {activePreview === index ? "Hide Preview" : "Preview"}
+                </motion.button>
+
+                <motion.a
+                  href={project.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md"
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Open Project
+                </motion.a>
+              </div>
             </div>
-          </div>
 
-          <motion.div
-            className={`overflow-hidden border-t border-cyan-700/30 bg-black transition-all duration-700 ${
-              showPreview ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-            animate={{
-              opacity: showPreview ? 1 : 0,
-              height: showPreview ? 400 : 0,
-            }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
-            <iframe
-              src={project.path}
-              title={`${project.name} preview`}
-              className="w-full h-[400px]"
-            ></iframe>
+            <motion.div
+              className={`overflow-hidden border-t border-cyan-700/30 bg-black transition-all duration-700 ${
+                activePreview === index
+                  ? "max-h-[500px] opacity-100"
+                  : "max-h-0 opacity-0"
+              }`}
+              animate={{
+                opacity: activePreview === index ? 1 : 0,
+                height: activePreview === index ? 400 : 0,
+              }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
+              {activePreview === index && (
+                <iframe
+                  src={project.path}
+                  title={`${project.name} preview`}
+                  className="w-full h-[400px]"
+                ></iframe>
+              )}
+            </motion.div>
           </motion.div>
-        </motion.div>
+        ))}
       </div>
+
+      {/* No Copyright / Footer */}
+      <motion.div
+        className="text-center text-gray-500 text-sm mt-12"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+      >
+        © 2025 My Portfolio - No Copyright Infringement Intended
+      </motion.div>
     </motion.div>
   );
 }
