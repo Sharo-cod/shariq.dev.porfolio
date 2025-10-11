@@ -17,8 +17,16 @@ export default function Portfolio() {
       path: "/projects/02workShop/dist/index.html",
       preview: "https://c4.wallpaperflare.com/wallpaper/239/930/324/walkman-cassette-player-the-bootleg-boy-2-lofi-sony-hd-wallpaper-thumb.jpg",
       description:
-        "A modern workshop-themed website featuring tools, services, and contact information with smooth UI animations.",
+        "A sleek music streaming website where users can explore, listen, and enjoy curated songs with a modern, interactive interface and smooth animations.",
     },
+    {
+  name: "TravelThroughPakistan",
+  path: "/projects/TravelThroughpakistan/dist/index.html",
+  preview: "https://example.com/TravelThroughPakistan-preview.jpg",
+  description:
+    "A travel guide website showcasing the beauty of Pakistan, highlighting mountains, rivers, deserts, and cultural heritage with an interactive interface.",
+  }
+
   ];
 
   return (
@@ -68,33 +76,32 @@ export default function Portfolio() {
 
       <div className="flex flex-wrap justify-center gap-10">
         {projects.map((project, index) => (
-        <motion.div
-          key={index}
-          className="relative bg-gray-900 rounded-2xl overflow-hidden w-full max-w-lg sm:max-w-sm shadow-lg border border-cyan-700/30 hover:border-cyan-400/70 transition-all duration-500"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          whileHover={{
-            scale: 1.03,
-            rotateX: 3,
-            rotateY: -3,
-            boxShadow: "0px 0px 50px rgba(0,255,255,0.3)",
-          }}
-        >
-          <motion.img
-            src={project.preview}
-            alt={`${project.name} preview`}
-            className="w-full h-52 sm:h-40 md:h-52 object-cover bg-black transition-transform duration-700 hover:scale-110"
-            style={{
-              filter:
-                project.name === "Radio Verse"
-                  ? "grayscale(50%) contrast(120%) brightness(90%) sepia(30%) hue-rotate(180deg) saturate(200%)"
-                  : "none",
+          <motion.div
+            key={index}
+            className="relative bg-gray-900 rounded-2xl overflow-hidden w-full max-w-lg sm:max-w-sm shadow-lg border border-cyan-700/30 hover:border-cyan-400/70 transition-all duration-500"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            whileHover={{
+              scale: 1.03,
+              rotateX: 3,
+              rotateY: -3,
+              boxShadow: "0px 0px 50px rgba(0,255,255,0.3)",
             }}
-            whileHover={{ rotate: 1 }}
-          />
-
+          >
+            <motion.img
+              src={project.preview}
+              alt={`${project.name} preview`}
+              className="w-full h-52 sm:h-40 md:h-52 object-cover bg-black transition-transform duration-700 hover:scale-110"
+              style={{
+                filter:
+                  project.name === "Radio Verse"
+                    ? "grayscale(50%) contrast(120%) brightness(90%) sepia(30%) hue-rotate(180deg) saturate(200%)"
+                    : "none",
+              }}
+              whileHover={{ rotate: 1 }}
+            />
 
             <div className="p-6 text-left">
               <h2 className="text-2xl font-bold text-cyan-400 mb-3">
@@ -149,7 +156,6 @@ export default function Portfolio() {
         ))}
       </div>
 
-      {/* No Copyright / Footer */}
       <motion.div
         className="text-center text-gray-500 text-sm mt-12"
         initial={{ opacity: 0 }}
