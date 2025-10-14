@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="bg-black text-white pt-15 flex flex-col items-center justify-center text-center min-h-screen px-5 relative "
+      className="bg-black text-white pt-15 flex flex-col items-center justify-center text-center min-h-screen px-5 relative pt-20"
     >
       <div className="relative pt-5 w-52 h-52 sm:w-64 sm:h-64 mb-6 rounded-full flex items-center justify-center">
         <motion.div
