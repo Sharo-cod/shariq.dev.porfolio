@@ -6,13 +6,7 @@ export default function Portfolio() {
   const [activePreview, setActivePreview] = useState(null);
 
   const projects = [
-    {
-      name: "Coca Cola Website",
-      path: "/projects/coca-cola/dist/index.html",
-      preview: "https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo.png",
-      description:
-        "A sleek React recreation of Coca Cola's landing experience with modern animations and product highlights.",
-    },
+
     {
       name: "Radio Verse",
       path: "/projects/02workShop/dist/index.html",
@@ -20,20 +14,7 @@ export default function Portfolio() {
       description:
         "A sleek music streaming website where users can explore, listen, and enjoy curated songs with a modern, interactive interface and smooth animations.",
     },
-    {
-  name: "TravelThroughPakistan",
-  path: "/projects/TravelThroughpakistan/dist/index.html",
-  preview: travel,
-  description:
-    "A travel guide website showcasing the beauty of Pakistan, highlighting mountains, rivers, deserts, and cultural heritage with an interactive interface.",
-  },
-    {
-  name: "Todo List",
-  path: "/projects/TodoList/dist/index.html",
-  preview: "https://images.unsplash.com/photo-1644329843491-99edfc83de04?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171",
-  description:
-    "The To-Do List App is a simple yet powerful productivity tool designed to help users manage daily tasks efficiently. It allows you to create, edit, and delete tasks with ease, keeping your workflow organized and stress-free..",
-  },
+
     {
   name: "Global Effect",
   path: "/projects/Globaleffect/dist/index.html",
