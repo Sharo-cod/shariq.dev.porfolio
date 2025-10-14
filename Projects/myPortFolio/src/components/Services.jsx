@@ -9,6 +9,7 @@ import {
   Atom,
   Scroll,
   Activity,
+  Film, // 🎬 new icon for Animation
 } from "lucide-react";
 
 export default function Services() {
@@ -77,16 +78,24 @@ export default function Services() {
       gradient: "from-white via-cyan-300 to-white",
       borderColor: "border-white",
     },
+    {
+      title: "Background Animation",
+      description:
+        "Designing engaging motion experiences and cinematic transitions that bring interfaces to life.",
+      icon: <Film size={40} />,
+      gradient: "from-cyan-400 via-white to-cyan-500",
+      borderColor: "border-cyan-400",
+    },
   ];
 
   return (
-      <motion.section
-        id="services"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32 overflow-hidden"
-      >
+    <motion.section
+      id="services"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center px-6 py-32 overflow-hidden"
+    >
       {/* Animated glowing wave background */}
       <motion.svg
         className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"

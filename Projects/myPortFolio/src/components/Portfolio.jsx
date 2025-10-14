@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import travel from "../assets/travel.png"
 
 export default function Portfolio() {
   const [activePreview, setActivePreview] = useState(null);
@@ -22,9 +23,30 @@ export default function Portfolio() {
     {
   name: "TravelThroughPakistan",
   path: "/projects/TravelThroughpakistan/dist/index.html",
-  preview: "https://example.com/TravelThroughPakistan-preview.jpg",
+  preview: travel,
   description:
     "A travel guide website showcasing the beauty of Pakistan, highlighting mountains, rivers, deserts, and cultural heritage with an interactive interface.",
+  },
+    {
+  name: "Todo List",
+  path: "/projects/TodoList/dist/index.html",
+  preview: "https://images.unsplash.com/photo-1644329843491-99edfc83de04?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171",
+  description:
+    "The To-Do List App is a simple yet powerful productivity tool designed to help users manage daily tasks efficiently. It allows you to create, edit, and delete tasks with ease, keeping your workflow organized and stress-free..",
+  },
+    {
+  name: "Global Effect",
+  path: "/projects/Globaleffect/dist/index.html",
+  preview: "https://plus.unsplash.com/premium_photo-1712175879037-86f0007dc7dd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1157",
+  description:
+    "The Global Effect is an interactive, animated background that responds to user movement and cursor interaction. Designed for modern web experiences, it adds depth, dynamism, and a sense of interactivity to your website",
+  },
+    {
+  name: "Studio Verse",
+  path: "/projects/Studio-verse/dist/index.html",
+  preview: "../src/assets/studio.png",
+  description:
+    "Studio Verse is a digital universe where creativity meets technology. From immersive web designs to interactive experiences, we craft visuals that inspire and connect people in the modern web era.",
   }
 
   ];

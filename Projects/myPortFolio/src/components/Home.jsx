@@ -88,7 +88,9 @@ export default function Hero() {
           className="relative rounded-full p-[2px] bg-gradient-to-r from-white to-cyan-600"
         >
           <a
-            href="#resume"
+            href="https://drive.google.com/file/d/1wKueX2AhFvPVqBU-NRxLflyXBfzvYaIC/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="block bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black transition"
           >
             My Resume
