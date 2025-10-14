@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import travel from "../assets/travel.png"
+import studio from "../assets/studio.png"
 
 export default function Portfolio() {
   const [activePreview, setActivePreview] = useState(null);
@@ -25,7 +26,7 @@ export default function Portfolio() {
     {
   name: "Studio Verse",
   path: "/projects/Studio-verse/dist/index.html",
-  preview: "../src/assets/studio.png",
+  preview: studio,
   description:
     "Studio Verse is a digital universe where creativity meets technology. From immersive web designs to interactive experiences, we craft visuals that inspire and connect people in the modern web era.",
   }
