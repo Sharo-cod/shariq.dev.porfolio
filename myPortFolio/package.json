@@ -11,21 +11,22 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vercel/analytics": "^1.5.0",
+    "emailjs-com": "^3.2.0",
+    "framer-motion": "^12.23.22",
+    "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.3",
-    "framer-motion": "^12.23.22",
-    "tailwindcss": "^4.1.14",
-    "@tailwindcss/vite": "^4.1.14",
-    "@studio-freight/lenis": "^1.0.42",
-    "lucide-react": "^0.544.0",
-    "three": "^0.180.0",
-    "vanta": "^0.5.24",
-    "@emailjs/browser": "^4.4.1",
-    "emailjs-com": "^3.2.0",
     "react-icons": "^5.5.0",
+    "react-router-dom": "^7.9.3",
     "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.9.1"
+    "tailwindcss": "^4.1.14",
+    "three": "^0.180.0",
+    "tsparticles": "^3.9.1",
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
@@ -35,9 +36,9 @@
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
+    "gh-pages": "^6.2.0",
     "globals": "^16.4.0",
-    "vite": "^5.0.0",
-    "gh-pages": "^6.2.0"
+    "vite": "^5.0.0"
   },
   "overrides": {}
 }
