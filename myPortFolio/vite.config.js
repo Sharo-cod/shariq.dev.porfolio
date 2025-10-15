@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "./", // 👈 VERY IMPORTANT for GitHub Pages
   plugins: [react(), tailwindcss()],
-  base: "/myPortFolio/", // 👈 replace with your repo name
   assetsInclude: ["**/*.JPG", "**/*.jpg"],
 });
