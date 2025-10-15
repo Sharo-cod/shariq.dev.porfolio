@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import radio from "../assets/radio.png";
-import cocaCola from "../assets/cocaCola.png";
 import cocacolapdf from "../assets/cocacola.pdf";
 import global from "../assets/global.png";
 import globalpdf from "../assets/global1.pdf";
@@ -44,7 +43,7 @@ export default function Portfolio() {
     },
     {
       name: "Coca Cola Website",
-      preview: cocaCola,
+      preview: "https://images.unsplash.com/photo-1535990379313-5cd271a2da2d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNvY2ElMjBjb2xhfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500",
       description:
         "Coca-Cola, introduced in 1886, is one of the most iconic soft drinks in the world. Known for its refreshing taste, it has become a symbol of joy and togetherness across generations.",
       path: cocacolapdf,
