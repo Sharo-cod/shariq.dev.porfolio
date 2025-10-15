@@ -21,21 +21,23 @@ export default function Contact() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // Add time manually to form
+    const formData = new FormData(formRef.current);
+    formData.append("time", new Date().toLocaleString());
+
     emailjs
       .sendForm(
-        "service_x4yvy3m",   // from EmailJS dashboard
-        "template_kwnquk7",  // your created template
+        "service_x4yvy3m",   // your EmailJS service ID
+        "template_kwnquk7",  // your EmailJS template ID
         formRef.current,
-        "8k1y7FdN4fen_QdOL"    // from EmailJS → Account → API Keys
+        "8k1y7FdN4fen_QdOL"  // your EmailJS public key
       )
       .then(
-        (result) => {
-          console.log(result.text);
+        () => {
           alert("✅ Message sent successfully!");
           e.target.reset();
         },
-        (error) => {
-          console.log(error.text);
+        () => {
           alert("❌ Failed to send message, please try again.");
         }
       );
@@ -76,7 +78,6 @@ export default function Contact() {
           className="w-full px-5 py-3 rounded-md bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         />
 
-
         <textarea
           name="message"
           rows="5"
@@ -84,22 +85,25 @@ export default function Contact() {
           required
           className="w-full px-5 py-3 rounded-md bg-gray-800 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         ></textarea>
+
         <motion.button
-                type="submit"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 20px 4px rgba(6, 182, 212, 0.7), 0 0 40px 10px rgba(6, 182, 212, 0.4)",
-                }}
-                whileTap={{ scale: 0.95, boxShadow: "0 0 10px 2px rgba(6, 182, 212, 0.3)" }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-full bg-black cursor-pointer text-white border-2 border-white font-semibold py-3 rounded-full
-                          hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black hover:border-white
-                          transition-all duration-300"
-              >
-                Send Message
+          type="submit"
+          whileHover={{
+            scale: 1.05,
+            boxShadow:
+              "0 0 20px 4px rgba(6,182,212,0.7), 0 0 40px 10px rgba(6,182,212,0.4)",
+          }}
+          whileTap={{
+            scale: 0.95,
+            boxShadow: "0 0 10px 2px rgba(6,182,212,0.3)",
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="w-full bg-black cursor-pointer text-white border-2 border-white font-semibold py-3 rounded-full
+                     hover:bg-gradient-to-r hover:from-white hover:to-cyan-500 hover:text-black hover:border-white
+                     transition-all duration-300"
+        >
+          Send Message
         </motion.button>
-
-
       </form>
     </section>
   );

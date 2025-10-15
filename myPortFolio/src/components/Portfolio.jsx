@@ -1,36 +1,54 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import travel from "../assets/travel.png"
-import studio from "../assets/studio.png"
+import radio from "../assets/radio.png";
+import cocaCola from "../assets/cocaColaimg.png";
+import cocacolapdf from "../assets/cocacola.pdf";
+import global from "../assets/global.png";
+import globalpdf from "../assets/global1.pdf";
+import global2pdf from "../assets/global2.pdf";
+import radioabt from "../assets/radioabt.pdf";
+import radioexp from "../assets/radioexp.pdf";
+import todolist from "../assets/todolist.pdf";
 
 export default function Portfolio() {
   const [activePreview, setActivePreview] = useState(null);
 
   const projects = [
-
     {
-      name: "Radio Verse",
-      path: "/projects/02workShop/dist/index.html",
-      preview: "https://c4.wallpaperflare.com/wallpaper/239/930/324/walkman-cassette-player-the-bootleg-boy-2-lofi-sony-hd-wallpaper-thumb.jpg",
+      name: "Global Effect",
+      preview: global,
       description:
-        "A sleek music streaming website where users can explore, listen, and enjoy curated songs with a modern, interactive interface and smooth animations.",
+        "The Global Effect is an interactive, animated background that responds to user movement and cursor interaction. Designed for modern web experiences, it adds depth, dynamism, and a sense of interactivity to your website.",
+      paths: [
+        { label: "Open Page 1", url: globalpdf },
+        { label: "Open Page 2", url: global2pdf },
+      ],
     },
-
     {
-  name: "Global Effect",
-  path: "/projects/Globaleffect/dist/index.html",
-  preview: "https://plus.unsplash.com/premium_photo-1712175879037-86f0007dc7dd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1157",
-  description:
-    "The Global Effect is an interactive, animated background that responds to user movement and cursor interaction. Designed for modern web experiences, it adds depth, dynamism, and a sense of interactivity to your website",
-  },
+      name: "Studio Verse",
+      preview: radio,
+      description:
+        "Studio Verse is a digital universe where creativity meets technology. From immersive web designs to interactive experiences, we craft visuals that inspire and connect people in the modern web era.",
+      paths: [
+        { label: "Open Page 1", url: radioexp },
+        { label: "Open Page 2", url: radioabt },
+      ],
+    },
     {
-  name: "Studio Verse",
-  path: "/projects/Studio-verse/dist/index.html",
-  preview: studio,
-  description:
-    "Studio Verse is a digital universe where creativity meets technology. From immersive web designs to interactive experiences, we craft visuals that inspire and connect people in the modern web era.",
-  }
-
+      name: "Todo List",
+      preview:
+        "https://images.unsplash.com/photo-1644329843283-640d00509d43?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1170",
+      description:
+        "A beautifully designed task manager that helps you organize, prioritize, and track your daily goals with a clean, elegant UI and smooth animations.",
+      path: todolist,
+    },
+    {
+      name: "Coca Cola Website",
+      preview: cocaCola,
+      description:
+        "Coca-Cola, introduced in 1886, is one of the most iconic soft drinks in the world. Known for its refreshing taste, it has become a symbol of joy and togetherness across generations.",
+      path: cocacolapdf,
+    },
   ];
 
   return (
@@ -39,11 +57,11 @@ export default function Portfolio() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative min-h-screen bg-black text-white pt-28 pb-20 px-6 overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-b from-black via-[#0a0a14] to-black text-white pt-28 pb-20 px-4 sm:px-8 overflow-hidden"
     >
-      {/* Animated gradient line background */}
+      {/* 🌈 Animated background line */}
       <motion.svg
-        className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none"
+        className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
         initial={{ pathLength: 0 }}
@@ -69,8 +87,9 @@ export default function Portfolio() {
         </defs>
       </motion.svg>
 
+      {/* 🏷️ Section Title */}
       <motion.h1
-        className="text-4xl md:text-5xl font-extrabold text-center mb-12 bg-gradient-to-r from-white to-cyan-500 bg-clip-text text-transparent"
+        className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent tracking-wide"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -78,64 +97,66 @@ export default function Portfolio() {
         My React Projects
       </motion.h1>
 
-      <div className="flex flex-wrap justify-center gap-10">
+      {/* 💼 Project Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="relative bg-gray-900 rounded-2xl overflow-hidden w-full max-w-lg sm:max-w-sm shadow-lg border border-cyan-700/30 hover:border-cyan-400/70 transition-all duration-500"
+            className="relative bg-[#0e0e14] rounded-3xl overflow-hidden w-full max-w-sm shadow-[0_0_25px_rgba(0,255,255,0.15)] border border-cyan-800/40 hover:border-cyan-400/70 transition-all duration-500"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             whileHover={{
               scale: 1.03,
-              rotateX: 3,
-              rotateY: -3,
-              boxShadow: "0px 0px 50px rgba(0,255,255,0.3)",
+              boxShadow: "0 0 30px rgba(0,255,255,0.3)",
             }}
           >
             <motion.img
               src={project.preview}
               alt={`${project.name} preview`}
-              className="w-full h-52 sm:h-40 md:h-52 object-cover bg-black transition-transform duration-700 hover:scale-110"
-              style={{
-                filter:
-                  project.name === "Radio Verse"
-                    ? "grayscale(50%) contrast(120%) brightness(90%) sepia(30%) hue-rotate(180deg) saturate(200%)"
-                    : "none",
-              }}
-              whileHover={{ rotate: 1 }}
+              className="w-full h-48 sm:h-56 object-cover bg-black transition-transform duration-700 hover:scale-110"
+              whileHover={{ rotate: 0.5 }}
             />
 
-            <div className="p-6 text-left">
-              <h2 className="text-2xl font-bold text-cyan-400 mb-3">
+            <div className="p-6 text-center">
+              <h2 className="text-xl font-bold text-cyan-400 mb-2 tracking-wide">
                 {project.name}
               </h2>
-              <p className="text-gray-300 mb-6">{project.description}</p>
+              <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                {project.description}
+              </p>
 
-              <div className="flex justify-between">
-                <motion.button
-                  onClick={() =>
-                    setActivePreview(activePreview === index ? null : index)
-                  }
-                  className="bg-cyan-500 hover:bg-cyan-400 text-black px-5 py-2 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md hover:shadow-cyan-400/50"
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {activePreview === index ? "Hide Preview" : "Preview"}
-                </motion.button>
-
-                <motion.a
-                  href={project.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md"
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Open Project
-                </motion.a>
+              {/* 🎯 Button Section */}
+              <div className="flex flex-wrap justify-center gap-3">
+                {Array.isArray(project.paths) ? (
+                  project.paths.map((file, i) => (
+                    <motion.a
+                      key={i}
+                      href={file.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gradient-to-r from-cyan-300 to-cyan-600 text-black font-semibold px-5 py-2.5 rounded-2xl shadow-md hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105"
+                      whileTap={{ scale: 0.93 }}
+                    >
+                      {file.label}
+                    </motion.a>
+                  ))
+                ) : project.path ? (
+                  <motion.a
+                    href={project.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-cyan-300 to-cyan-600 text-black font-semibold px-6 py-2.5 rounded-2xl shadow-md hover:shadow-cyan-500/40 transition-all duration-300 hover:scale-105"
+                    whileTap={{ scale: 0.93 }}
+                  >
+                    Open Project
+                  </motion.a>
+                ) : null}
               </div>
             </div>
 
+            {/* 🔍 Preview (optional expansion section) */}
             <motion.div
               className={`overflow-hidden border-t border-cyan-700/30 bg-black transition-all duration-700 ${
                 activePreview === index
@@ -160,13 +181,14 @@ export default function Portfolio() {
         ))}
       </div>
 
+      {/* 🪶 Footer */}
       <motion.div
-        className="text-center text-gray-500 text-sm mt-12"
+        className="text-center text-gray-500 text-sm mt-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.5 }}
       >
-        © 2025 My Portfolio - No Copyright Infringement Intended
+        © 2025 Shariq Alam — Crafted with 🖤 By Shariq Alam
       </motion.div>
     </motion.div>
   );

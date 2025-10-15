@@ -34,13 +34,11 @@ function AnimatedRoutes() {
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // Preloader timer
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Lenis smooth scroll setup
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.1,
@@ -65,12 +63,10 @@ export default function App() {
       <div className="bg-black text-white min-h-screen flex flex-col">
         <Navbar />
 
-        {/* Main content grows to fill available space */}
         <main className="flex-grow">
           <AnimatedRoutes />
         </main>
 
-        {/* Footer appears on all pages */}
         <Footer />
       </div>
     </Router>
