@@ -8,6 +8,7 @@ import Services from "./components/Services";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard/Dashboard"
 import Contact from "./components/Contact";
+import CMS from "./components/CMS";
 
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/cms" element={<CMS />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
