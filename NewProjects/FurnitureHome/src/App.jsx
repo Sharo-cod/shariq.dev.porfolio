@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import Home from "./components/Home";
+import Gallery from "./components/Gallery";
 import Services from "./components/Services";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard/Dashboard"
@@ -21,6 +22,7 @@ export default function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/dashboard" element={<Dashboard />} />
