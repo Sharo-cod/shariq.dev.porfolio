@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function Carousel({ title, images, bgColor = "bg-stone-900" }) {
+export default function Carousel({ title, images, bgColor = "bg-white", textColor = "text-black" }) {
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -21,23 +21,23 @@ export default function Carousel({ title, images, bgColor = "bg-stone-900" }) {
   };
 
   return (
-    <section className={`${bgColor} py-20 px-8 text-center`}>
-      <h2 className="text-4xl font-bold text-stone-200 mb-10">{title}</h2>
+    <section className={`bg-stone-300 py-20 px-8 text-center`}>
+      <h2 className={`text-4xl font-bold mb-10 ${textColor}`}>{title}</h2>
       <div className="max-w-6xl mx-auto">
         <Slider {...sliderSettings}>
           {images.map((image, index) => (
             <div key={index} className="px-4">
-              <div className="bg-stone-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-stone-500/30 transition-all">
+              <div className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-lg transition-all`}>
                 <img
                   src={image}
                   alt={`Furniture ${index + 1}`}
                   className="w-full h-80 object-cover"
                 />
                 <div className="p-4">
-                  <h3 className="text-xl text-stone-200 font-semibold">
+                  <h3 className={`text-xl font-semibold ${textColor}`}>
                     Furniture Style {index + 1}
                   </h3>
-                  <p className="text-gray-400 text-sm mt-2">
+                  <p className="text-gray-700 text-sm mt-2">
                     Modern, elegant, and crafted to perfection.
                   </p>
                 </div>

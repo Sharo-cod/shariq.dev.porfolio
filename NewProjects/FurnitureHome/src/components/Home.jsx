@@ -54,18 +54,18 @@ export default function Home() {
       </section>
 
       {/* 🪑 Reusable Carousels */}
-      <Carousel title="Featured Furniture" images={featuredFurniture} bgColor="bg-stone-900" />
+      <Carousel title="Featured Furniture" images={featuredFurniture} bgColor="bg-white" />
 
       {/* 👑 Our Leaders Section */}
-      <section className="bg-stone-900 py-20 px-6 sm:px-10 text-center text-white">
-        <h2 className="text-3xl sm:text-4xl font-bold text-stone-200 mb-6">Our Leaders</h2>
-        <p className="text-gray-400 max-w-2xl mx-auto mb-12 text-sm sm:text-base">
+      <section className="bg-stone-300 py-20 px-6 sm:px-10 text-center text-black">
+        <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">Our Leaders</h2>
+        <p className="text-gray-700 max-w-2xl mx-auto mb-12 text-sm sm:text-base">
           Meet the visionaries behind our craftsmanship and design innovation.
         </p>
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
           {/* CEO */}
-          <div className="bg-stone-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-stone-500/30 transition-transform hover:-translate-y-2">
+          <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-stone-500/30 transition-transform hover:-translate-y-2">
             <img
               src={Amanullah}
               alt="CEO"
@@ -73,9 +73,9 @@ export default function Home() {
               loading="lazy"
             />
             <div className="p-6">
-              <h3 className="text-2xl font-semibold text-stone-100">Amanullah Khan</h3>
-              <p className="text-stone-300 font-medium mb-3">Chief Executive Officer</p>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <h3 className="text-2xl font-semibold text-black">Amanullah Khan</h3>
+              <p className="text-stone-800 font-medium mb-3">Chief Executive Officer</p>
+              <p className="text-gray-700 text-sm leading-relaxed">
                 Amanullah leads our creative and strategic vision with passion and precision,
                 ensuring every piece reflects timeless beauty and quality.
               </p>
@@ -83,7 +83,7 @@ export default function Home() {
           </div>
 
           {/* Co-Founder */}
-          <div className="bg-stone-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-stone-500/30 transition-transform hover:-translate-y-2">
+          <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-stone-500/30 transition-transform hover:-translate-y-2">
             <img
               src={Attaullah}
               alt="Co-Founder"
@@ -92,10 +92,10 @@ export default function Home() {
             />
             <div className="p-6">
               <h3 className="text-2xl font-semibold text-stone-100">Attaullah Khan</h3>
-              <p className="text-stone-300 font-medium mb-3">
+              <p className="text-black font-medium mb-3">
                 Co-Founder & Head of Design
               </p>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-700 text-sm leading-relaxed">
                 Attaullah combines creativity with functionality, bringing artistic depth to
                 every furniture design we create.
               </p>
@@ -105,9 +105,9 @@ export default function Home() {
       </section>
 
       {/* 💎 Why Choose Us Section */}
-      <section className="bg-stone-800 py-20 px-6 sm:px-10 text-center text-white">
-        <h2 className="text-3xl sm:text-4xl font-bold text-stone-200 mb-6">Why Choose Us</h2>
-        <p className="text-gray-300 max-w-2xl mx-auto mb-14 text-sm sm:text-base">
+      <section className="bg-stone-300 py-20 px-6 sm:px-10 text-center text-black">
+        <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">Why Choose Us</h2>
+        <p className="text-gray-700 max-w-2xl mx-auto mb-14 text-sm sm:text-base">
           We don’t just build furniture — we craft experiences that last a lifetime.
           Here’s what makes us different.
         </p>
@@ -131,13 +131,19 @@ export default function Home() {
               text: "Our team provides unmatched after-sales service and guidance to make your experience seamless.",
             },
           ].map((item) => (
-            <div
-              key={item.title}
-              className="bg-stone-700 p-8 rounded-2xl shadow-lg hover:shadow-stone-500/30 hover:-translate-y-2 transition-all"
-            >
-              <h3 className="text-2xl font-semibold mb-4 text-stone-200">{item.title}</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">{item.text}</p>
-            </div>
+          <div
+            key={item.title}
+            className="
+              bg-gradient-to-br from-white to-stone-300 
+              p-8 rounded-3xl shadow-xl 
+              hover:shadow-2xl hover:scale-105 
+              transition-transform duration-500 
+              cursor-pointer
+            "
+          >
+            <h3 className="text-2xl font-bold mb-4 text-black">{item.title}</h3>
+            <p className="text-gray-700 text-sm leading-relaxed">{item.text}</p>
+          </div>
           ))}
         </div>
       </section>
