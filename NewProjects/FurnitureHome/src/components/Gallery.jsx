@@ -11,31 +11,31 @@ function Gallery() {
       name: "Kitchen Service",
       desc: "Modular kitchen design & custom fittings.",
       img: kitchenImg,
-      link: "/kitchen",
+      link: "/kitchenservice",
     },
     {
       name: "Door Service",
       desc: "Premium wooden doors with custom designs.",
       img: doorImg,
-      link: "/doors",
+      link: "/doorservice",
     },
     {
       name: "Windows Service",
       desc: "Modern wooden + paneled window solutions.",
       img: windowImg,
-      link: "/windows",
+      link: "/windowsservice",
     },
     {
       name: "Mix Wood Components",
       desc: "Custom wooden components & craftsmanship.",
       img: woodcomponentImg,
-      link: "/mix-wood",
+      link: "/woodrepair",
     },
   ];
 
   return (
-    <div className="py-34 px-6 bg-stone-300 min-h-screen">
-      <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-black mb-20 tracking-wide">
+    <div className="py-16 px-6 bg-stone-300 min-h-screen">
+      <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-black mb-16 tracking-wide">
         Our Services
       </h2>
 
@@ -63,8 +63,8 @@ function Gallery() {
               />
             </div>
 
-            <div className="p-8">
-              <h3 className="text-2xl font-bold text-black mb-4">
+            <div className="p-6 sm:p-8">
+              <h3 className="text-2xl font-bold text-black mb-3">
                 {service.name}
               </h3>
               <p className="text-gray-700 text-base leading-relaxed">
