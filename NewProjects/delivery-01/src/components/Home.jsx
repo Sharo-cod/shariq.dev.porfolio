@@ -1,8 +1,11 @@
 // src/pages/Home.jsx
-import React from "react";
+import React, { useState } from "react";
 
-export default function Home() {
-  const menuItems = [
+export default function Home({ cart, setCart }) {
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+   const menuItems = [
     // ----- Burgers -----
     {
       title: "Classic Burger",
@@ -28,7 +31,6 @@ export default function Home() {
       price: "$7.99",
       img: "https://www.inspiredtaste.net/wp-content/uploads/2018/05/Homemade-Mushroom-Veggie-Burger-Recipe-1-1200.jpg",
     },
-
     // ----- Pizzas -----
     {
       title: "Cheese Pizza",
@@ -40,7 +42,7 @@ export default function Home() {
       title: "Pepperoni Pizza",
       desc: "Loaded pepperoni & extra cheese.",
       price: "$13.99",
-      img: "https://www.cobsbread.com/cdn/shop/articles/Pepperoni-pizza-850x630-1-585x400-1.jpg?v=1762545342&width=1200",
+      img: "https://www.cobsbread.com/cdn/shop/articles/Pepperoni-pizza-850x630-1-585x400-1.jpg",
     },
     {
       title: "BBQ Chicken Pizza",
@@ -54,13 +56,12 @@ export default function Home() {
       price: "$12.49",
       img: "https://cdn.loveandlemons.com/wp-content/uploads/2023/02/vegetarian-pizza-recipe-580x870.jpg",
     },
-
     // ----- Drinks -----
     {
       title: "Soft Drinks",
       desc: "Refreshing sodas to pair with your meal.",
       price: "$2.49",
-      img: "https://cdn.informaconnect.com/platform/files/public/2025-07/background/800x1000/Taco%20Bell%20Agua%20Refrescas_02.png?VersionId=AxjkYte5gDo__U5TUjBnopnoX.fwvTxz",
+      img: "https://cdn.informaconnect.com/platform/files/public/2025-07/background/800x1000/Taco%20Bell%20Agua%20Refrescas_02.png",
     },
     {
       title: "Lemonade",
@@ -72,7 +73,7 @@ export default function Home() {
       title: "Iced Tea",
       desc: "Sweet & refreshing iced tea.",
       price: "$2.89",
-      img: "https://hips.hearstapps.com/hmg-prod/images/delish-210419-iced-tea-02-landscape-jg-1619020612.jpg?crop=1.00xw:1.00xh;0,0",
+      img: "https://www.eatthis.com/wp-content/uploads/sites/4/2019/05/iced-tea.jpg?quality=82&strip=1&w=640",
     },
     {
       title: "Milkshake",
@@ -80,13 +81,12 @@ export default function Home() {
       price: "$4.99",
       img: "https://preppykitchen.com/wp-content/uploads/2021/04/Milkshake-Feature.jpg",
     },
-
     // ----- Desserts -----
     {
       title: "Waffle's Ice Cream",
       desc: "Warm, gooey Icecream.",
       price: "$5.49",
-      img: "https://media.gettyimages.com/id/2032134620/photo/waffles-ice-cream-and-dessert-in-hand-fast-food-restaurant-service-with-person-and-sweet.jpg?s=612x612&w=0&k=20&c=ticrGGDx5GnHNVM_KI8chaqj2vRRIYvg87_gqQPfpAM=",
+      img: "https://thewanderlustkitchen.com/wp-content/uploads/2023/11/Homemade-Waffle-Ice-Cream-Sandwiches-Recipe-076-scaled-1200.jpg",
     },
     {
       title: "Ice Cream Cup",
@@ -98,7 +98,7 @@ export default function Home() {
       title: "Cheesecake Slice",
       desc: "Creamy New York-style cheesecake.",
       price: "$4.49",
-      img: "https://www.allrecipes.com/thmb/Pld3RNxDK3y7c0ieRqxaiupjvEs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8419-easy-sour-cream-cheesecake-DDMFS-beauty-4x3-BG-2747-44b427d330aa41aa876269b1249698a0.jpg",
+      img: "https://www.simplyrecipes.com/thmb/X95K7p_uqPZDkCr8zL0w82V_XvE=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-No-Bake-Cheesecake-LEAD-14-6f1469c3658b49009f32e232b6be1d40.JPG",
     },
     {
       title: "Domino's Dessert",
@@ -108,34 +108,51 @@ export default function Home() {
     },
   ];
 
-  // Scroll to Menu
   const scrollToMenu = () => {
     document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleAddToCart = (item) => {
+    setSelectedItem(item);
+    setShowPopup(true);
+  };
+
+  const confirmAddToCart = () => {
+    if (!selectedItem) return;
+
+    // Check if item already exists in cart
+    const index = cart.findIndex((c) => c.title === selectedItem.title);
+    if (index !== -1) {
+      // Increment qty if exists
+      const newCart = [...cart];
+      newCart[index].qty += 1;
+      setCart(newCart);
+    } else {
+      // Add new item with qty: 1
+      setCart([...cart, { ...selectedItem, qty: 1, price: parseFloat(selectedItem.price.replace('$','')) }]);
+    }
+
+    setShowPopup(false);
+    setSelectedItem(null);
   };
 
   return (
     <div className="w-full min-h-screen bg-gray-100">
       {/* Hero Section */}
       <div
-        className="relative h-[70vh] w-full flex items-center justify-center bg-cover bg-center"
+        className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1400&q=80')",
         }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-
-        <div className="relative text-center text-white px-6">
-          <h1 className="text-4xl md:text-6xl font-bold drop-shadow-lg">
-            Fast & Fresh Fast Food
-          </h1>
-          <p className="mt-4 text-lg md:text-2xl drop-shadow-lg">
-            Burgers • Pizzas • Drinks • Desserts
-          </p>
-
+        <div className="relative text-center text-white">
+          <h1 className="text-5xl font-bold">Fast & Fresh Fast Food</h1>
+          <p className="mt-4 text-xl">Burgers • Pizzas • Drinks • Desserts</p>
           <button
             onClick={scrollToMenu}
-            className="mt-6 px-6 py-3 bg-red-500 hover:bg-red-700 text-white rounded-lg transition font-semibold"
+            className="mt-6 px-6 py-3 bg-red-500 rounded hover:bg-red-700"
           >
             Order Now
           </button>
@@ -144,32 +161,28 @@ export default function Home() {
 
       {/* Menu Section */}
       <div id="menu" className="py-16 px-6 md:px-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Our Menu
-        </h2>
-
+        <h2 className="text-4xl font-bold text-center mb-12">Our Menu</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {menuItems.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition transform"
+              className="bg-white rounded-xl shadow hover:scale-105 transition"
             >
               <img
                 src={item.img}
                 alt={item.title}
-                className="h-48 w-full object-cover"
+                className="h-48 w-full object-cover rounded-t-xl"
               />
-
               <div className="p-5">
-                <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-                <p className="text-gray-600 text-sm mb-2">{item.desc}</p>
-
-                {/* Price */}
-                <p className="text-lg font-bold text-red-600 mb-4">
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <p className="text-lg font-bold text-red-600 mt-2">
                   {item.price}
                 </p>
-
-                <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition">
+                <button
+                  onClick={() => handleAddToCart(item)}
+                  className="mt-4 w-full py-2 bg-red-500 text-white rounded hover:bg-red-700"
+                >
                   Add to Cart
                 </button>
               </div>
@@ -178,9 +191,33 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Popup */}
+      {showPopup && selectedItem && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-80 text-center">
+            <h3 className="text-xl font-bold mb-3">Add to Cart?</h3>
+            <p className="mb-4">{selectedItem.title}</p>
+            <div className="flex justify-between">
+              <button
+                onClick={() => setShowPopup(false)}
+                className="px-4 py-2 bg-gray-300 rounded"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmAddToCart}
+                className="px-4 py-2 bg-red-500 text-white rounded"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
-      <footer className="py-6 bg-black text-center text-white">
-        © {new Date().getFullYear()} FastFoodCo — All Rights Reserved
+      <footer className="py-6 bg-black text-white text-center">
+        © {new Date().getFullYear()} FastEats — All Rights Reserved
       </footer>
     </div>
   );

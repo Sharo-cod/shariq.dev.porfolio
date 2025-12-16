@@ -1,8 +1,8 @@
-// src/components/Navbar.jsx
+// Navbar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ cart }) {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
 
@@ -16,15 +16,24 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center text-lg">
-          <Link to="/" className="hover:text-gray-400 transition">Home</Link>
-          <Link to="/contact" className="hover:text-gray-400 transition">Contact</Link>
+          <Link to="/" className="hover:text-gray-400 transition">
+            Home
+          </Link>
+          <Link to="/contact" className="hover:text-gray-400 transition">
+            Contact
+          </Link>
 
-          {/* Cart */}
+          {/* Cart with badge */}
           <Link
             to="/cart"
-            className="ml-4 bg-white text-red-700 px-4 py-2 shadow-2xl rounded font-bold hover:bg-gray-300 transition"
+            className="ml-4 relative bg-white text-red-700 px-4 py-2 shadow-2xl rounded font-bold hover:bg-gray-300 transition"
           >
             Cart 🛒
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full px-2">
+                {cart.length}
+              </span>
+            )}
           </Link>
         </div>
 
@@ -38,9 +47,19 @@ export default function Navbar() {
             stroke="currentColor"
           >
             {open ? (
-              <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
@@ -48,19 +67,25 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden bg-red-600 text-white w-full shadow-lg">
+        <div className="md:hidden bg-white-600 text-black w-full shadow-lg">
           <div className="flex flex-col px-4 py-3 space-y-3 text-lg">
-            <Link to="/" onClick={() => setOpen(false)} className="hover:text-yellow-300">Home</Link>
-            <Link to="/menu" onClick={() => setOpen(false)} className="hover:text-yellow-300">Menu</Link>
-            <Link to="/deals" onClick={() => setOpen(false)} className="hover:text-yellow-300">Deals</Link>
-            <Link to="/contact" onClick={() => setOpen(false)} className="hover:text-yellow-300">Contact</Link>
-
+            <Link to="/" onClick={() => setOpen(false)} className="hover:text-gray-300">
+              Home
+            </Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="hover:text-gray-300">
+              Contact
+            </Link>
             <Link
               to="/cart"
               onClick={() => setOpen(false)}
-              className="bg-yellow-300 text-red-700 px-4 py-2 rounded font-bold hover:bg-yellow-400"
+              className="relative bg-white-300 text-black px-4 py-2 rounded font-bold hover:bg-yellow-400"
             >
               Cart 🛒
+              {cart.length > 0 && (
+                <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full px-2">
+                  {cart.length}
+                </span>
+              )}
             </Link>
           </div>
         </div>
